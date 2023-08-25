@@ -7,19 +7,59 @@
  
  	<select id="selectReview" parameterType="int"
  	resultType="com.uilangage.spring.ex.mybatis.domain.Review">
- 		SELECT
- 			`id`
- 			, `storeName`
- 			, `menu`
- 			, `userName`
- 			, `point`
- 			, `review`
- 			, `createdAt`
- 			, `updatedAt`
- 		FROM
- 			`review`
- 		WHERE
- 			`id` = #{id}		 
+ 		SELECT 
+			`id`
+			, `storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+			, `createdAt`
+			, `updatedAt`
+		FROM 
+			`new_review`
+		WHERE 
+			`id` = #{id}		 
  	</select>
+ 	
+ 	<insert id="insertReview" parameterType="map">
+		INSERT INTO
+			`new_review`
+		(
+			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+		)
+		VALUE 
+		(
+			#{storeId}
+			, #{menu}
+			, #{userName}
+			, #{point}
+		)
+	
+	
+	</insert>
+ 	
+ 	<insert id="insertReviewByObject" parameterType="com.uilangage.spring.ex.mybatis.domain.Review">
+ 		INSERT INTO
+ 			`new_review`
+ 		(
+ 			`storeId`
+			, `menu`
+			, `userName`
+			, `point`
+			, `review`
+ 		)	
+ 		VALUE
+ 		(
+ 			#{storeId}
+ 			, #{menu}
+ 			, #{userName}
+ 			, #{point}
+ 			, #{review}
+ 		)
+ 	</insert>
  
  </mapper>

@@ -10,12 +10,13 @@ import com.uilangage.spring.ex.mybatis.domain.Review;
 import com.uilangage.spring.ex.mybatis.service.ReviewService;
 
 @Controller
+@RequestMapping("/mybatis/review")
 public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService; 
 	
-	@RequestMapping("/mybatis/review")
+	@RequestMapping("/")
 	@ResponseBody
 	// localhost:8080/mybatis/review?id=8
 	public Review review(@RequestParam("id") int id) {
@@ -23,5 +24,29 @@ public class ReviewController {
 		
 		return review;
 	}
+	
+	@RequestMapping("/insert")
+	@ResponseBody
+	public String createReview(){
+		
+		// 4, 치즈피자, 김인규, 4.5
+		
+		int count = reviewService.addReview(4, "치즈피자", "김인규", 4.5);
+		
+		// 2, 뿌링클 , 김인규, 
+		
+//		Review review = new Review();
+//		review.setStoreId(2);
+//		review.setMenu("뿌링클");
+//		review.setUserName("김인규");
+//		review.setPoint(4.0);
+//		review.setReview("역시 뿌링클은 진리입니다.");
+//		
+//		int count = reviewService.addReviewByObject(review);
+		
+		return "수행결과 : " + count;
+		
+	}
+	
 	
 }
