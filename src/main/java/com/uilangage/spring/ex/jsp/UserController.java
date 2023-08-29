@@ -21,14 +21,27 @@ public class UserController {
 	//ㅇ이름 생년월일 이메일 전달받고 사용자정보 저장하는 기능
 //	@RequestMapping(path="/jsp/user/create", method=RequestMethod.GET)
 	@GetMapping("/create")
-	@ResponseBody
+//	@ResponseBody
 	public String createUser(
 			@RequestParam("name") String name
 			,@RequestParam("birthday") String birthday
-			,@RequestParam("email") String email) {
+			,@RequestParam("email") String email
+			, Model model) {
 		
-		int count = userService.addUser(name, birthday, email);
-		return "수행결과 : " + count;
+//		int count = userService.addUser(name, birthday, email);
+		
+		User user = new User();
+		user.setName(name);
+		user.setYyyymmdd(birthday);
+		user.setEmail(email);
+		
+		int count = userService.addUserByObject(user);
+		
+		model.addAttribute("result",user);	
+		
+		return "jsp/userInfo";
+		
+//		return "수행결과 : " + count;
 	}
 	@GetMapping("/input")
 	public String inputUser() {
