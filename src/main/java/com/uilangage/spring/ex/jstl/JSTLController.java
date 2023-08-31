@@ -1,7 +1,10 @@
 package com.uilangage.spring.ex.jstl;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +29,39 @@ public class JSTLController {
 		
 		model.addAttribute("fruitList", fruitList);
 		
+		
+		List<Map<String, Object>> userList = new ArrayList<>();
+		
+		Map<String, Object> userMap = new HashMap<>();
+		userMap.put("name", "김인규");
+		userMap.put("age", 29);
+		userMap.put("hobby", "독서");
+		userList.add(userMap);
+		
+		userMap = new HashMap<>();
+		userMap.put("name", "김바다");
+		userMap.put("age", 5);
+		userMap.put("hobby", "사냥하기");
+		userList.add(userMap);
+		
+		model.addAttribute("userList", userList);
+		
 		return "jstl/ex02";
 	}
 	
+	@GetMapping("/ex03")
+	public String ex03(Model model) {
+		
+		Date now = new Date(); 
+		
+		model.addAttribute("now", now);
+		
+		
+		String dateString = "2023/08/31 17:52:23";
+		model.addAttribute("dateString", dateString);
+		
+		return "jstl/ex03";
+		
+	}
 	
 }

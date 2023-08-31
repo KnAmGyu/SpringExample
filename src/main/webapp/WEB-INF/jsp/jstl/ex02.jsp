@@ -43,7 +43,12 @@
 		<h4>${fruit } :::: ${status.count } ${status.index } ${status.first } ${status.last }</h4>	
 	</c:forEach>	
 		
-		
+	<table var="">
+		<tr>
+			<th>
+		</tr>
+	
+	</table>	
 		
 		
 		
