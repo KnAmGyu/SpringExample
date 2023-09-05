@@ -1,5 +1,7 @@
 package com.uilangage.spring.ex.jsp.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,13 @@ public class UserService {
 		
 		return user;
 	}
+	
+	public List<User> getUserList() {
+		List<User> userList = userRepository.selectUserList();
+		
+		return userList;
+		
+	}
+	
 	
 }
