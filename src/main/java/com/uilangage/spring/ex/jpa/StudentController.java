@@ -1,5 +1,8 @@
 package com.uilangage.spring.ex.jpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.uilangage.spring.ex.jpa.domain.Student;
+import com.uilangage.spring.ex.jpa.repository.StudentRepository;
 import com.uilangage.spring.ex.jpa.service.StudentService;
 
 @RequestMapping("/jpa/student")
@@ -15,6 +19,9 @@ public class StudentController {
 	
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private StudentRepository studentRepository;
 	
 	@GetMapping("/create")
 	@ResponseBody
@@ -48,6 +55,40 @@ public class StudentController {
 		studentService.deleteStudent(3);
 		
 		return "삭제 성공";
+	}
+	
+	@GetMapping("/select")
+	@ResponseBody
+	public List<Student> selectStudent(){
+		
+		// 모든행 조회
+//		List<Student> studentList = studentRepository.findAll();
+
+		
+		// id 기준으로 내림차순으로 정렬한 모든 행 조회
+		
+//		List<Student> studentList = studentRepository.findAllByOrderByIdDesc();
+		
+		
+//		List<Student> studentList = studentRepository.findTop1ByOrderByIdDesc();
+
+		
+//		List<Student> studentList = studentRepository.findByName("유재석");
+
+//		List<String> nameList = new ArrayList<>();
+//		nameList.add("유재석");
+//		nameList.add("조세호");
+		
+//		List<Student> studentList = studentRepository.findByNameIn(nameList);
+
+//		List<Student> studentList = studentRepository.findByEmailContaining("naver");
+		
+//		List<Student> studentList = studentRepository.findByIdBetweenOrderByIdDesc(1, 2);
+		
+		List<Student> studentList = studentRepository.findByDreamJobQuery("모델");
+		
+		return studentList;
+		
 	}
 	
 	
